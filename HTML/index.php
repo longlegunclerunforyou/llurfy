@@ -170,11 +170,11 @@
                    $("#my_location").html(my_location);
 
                
-                   document.cookie= 'my_facebook_id = response.id';
-                   document.cookie= 'my_username = response.username';
-                   document.cookie= 'my_email = response.email';
-                   document.cookie= 'my_location = response.location';
-                   document.cookie= 'my_gender = response.gender';
+                   document.cookie= my_facebook_id;
+                   document.cookie= my_username;
+                   document.cookie= my_email;
+                   document.cookie= my_location;
+                   document.cookie= my_gender;
 
 
                });
