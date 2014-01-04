@@ -82,7 +82,7 @@
                   </div>              
                   <div class="pull-right" style="background:red" style="WIDTH: 130px;">
                     <br>
-                    <button type="button" class="btn btn-info btn-lg " style="WIDTH: 120px;">Job Post</button><br><br>
+                    <button type="button" class="btn btn-info btn-lg " style="WIDTH: 120px;" data-toggle="modal" data-target="#myModalA">Job Post</button><br><br>
                     <button type="button" class="btn btn-info btn-lg " style="WIDTH: 120px;">Job Receive</button>
                   </div>
                   <div class="pull-right" style="background:green" style="WIDTH: 10px;">&nbsp;</div>
@@ -161,7 +161,7 @@
                     <div class="media-body">
                       <div class="pull-right" style="background:red">
                         <br>
-                        <button class="btn-info btn-lg" data-toggle="modal" data-target="#myModalA">Details...</button>
+                        <button class="btn-info btn-lg" data-toggle="modal" data-target="#myModalB">Details...</button>
                       </div>
                       <a href="#"><font color="red"><h4 class="media-heading">topic</h4></font></a>
                       <h4>name</h4>
@@ -177,7 +177,7 @@
                     <div class="media-body">
                       <div class="pull-right" style="background:red">
                         <br>
-                        <button class="btn-info btn-lg" data-toggle="modal" data-target="#myModalA">Details...</button>
+                        <button class="btn-info btn-lg" data-toggle="modal" data-target="#myModalB">Details...</button>
                       </div>
                       <a href="#"><font color="red"><h4 class="media-heading">topic</h4></font></a>
                       <h4>name</h4>
@@ -193,7 +193,7 @@
                     <div class="media-body">
                       <div class="pull-right" style="background:red">
                         <br>
-                        <button class="btn-info btn-lg" data-toggle="modal" data-target="#myModalA">Details...</button>
+                        <button class="btn-info btn-lg" data-toggle="modal" data-target="#myModalB">Details...</button>
                       </div>
                       <a href="#"><font color="red"><h4 class="media-heading">topic</h4></font></a>
                       <h4>name</h4>
@@ -248,8 +248,8 @@
                         <br>
 
                         <div class="input-group">
-                          <span class="input-group-addon">Location</span>
-                          <input type="text" class="form-control" placeholder="where to work">
+                          <span class="input-group-addon">Locations</span>
+                          <input type="text" class="form-control" placeholder="where to work , if there're more places need to go. pls type them all.">
                         </div>
                         <br>   
 
@@ -262,24 +262,169 @@
                         </div>
                         <br>   
 
-                        <div class="row">
+                        <!--div class="row">
                             <div class="col-lg-6">
                               <div class="input-group">
                                   <span class="input-group-addon">Start Time</span>
-                                  <input type="text" class="form-control" placeholder="begin">
+                                  <input type="text" class="form-control" placeholder="Ex :2014/7/9 3:00PM">
                               </div>
                             </div>
 
                             <div class="col-lg-6">
                               <div class="input-group">                            
                                   <span class="input-group-addon">Finish Time</span>
-                                  <input type="text" class="form-control" placeholder="deadline">
+                                  <input type="text" class="form-control" placeholder="EX :2015/8/10 4:00AM">
                               </div>
                             </div>
                         </div>
-                        <br>
+                        <br-->
 
-                        <textarea class="form-control" rows="10" style="resize: none;" placeholder="give some more details about your job"></textarea>              
+                        <!--div class="row" style="height: 40px;">
+                            <div class="col-lg-2">
+                              <div>
+                                  <h4><span class="label label-default">Start Time</span></h4>
+                              </div>
+                            </div>
+
+                            <div class="col-lg-3">
+                              <select class="form-control">
+                                    <option>2014</option>
+                                    <option>2015</option>
+                                    <option>2016</option>
+                              </select>
+                            </div>
+
+                            <div class="col-lg-3">
+                              <select class="form-control">
+                                    <option>Jan</option>
+                                    <option>Feb</option>
+                                    <option>Mar</option>
+                                    <option>Apr</option>
+                                    <option>May</option>
+                              </select>
+                            </div>
+
+                            <div class="col-lg-2">
+                              <select class="form-control">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                              </select>
+                            </div>
+
+                            <div class="col-lg-2">
+                              <select class="form-control">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                              </select>
+                            </div>
+                        </div>
+                        <br-->
+
+                        <div class="row" style="height: 10px;">
+                            <div class="col-lg-2" style="width: 120px">
+                              <div>
+                                  <h4><span class="label label-default">Start Time</span></h4>
+                              </div>
+                            </div>
+
+                            <div class="col-lg-3" style="height: 10px; width: 80px">
+                              <select style="height: 30px;">
+                                  <optgroup selected="true" label="year"> 
+                                   <option>2014</option>
+                                   <option>2015</option>
+                              </select>
+                            </div>
+
+                            <div class="col-lg-3" style="height: 10px; width: 60px">
+                              <select style="height: 30px;">
+                                  <optgroup selected="true" label="month"> 
+                                   <option>1</option>
+                                   <option>2</option>
+                              </select>
+                            </div>
+
+                            <div class="col-lg-3" style="height: 10px; width: 80px">
+                              <select style="height: 30px;">
+                                  <optgroup selected="true" label="date"> 
+                                   <option>1</option>
+                                   <option>2</option>
+                              </select>
+                            </div>
+
+                            <div class="col-lg-3" style="height: 10px; width: 60px">
+                              <select style="height: 30px;">
+                                  <optgroup selected="true" label="hour"> 
+                                   <option>1</option>
+                                   <option>2</option>
+                              </select>
+                            </div>
+
+                            <div class="col-lg-3" style="height: 10px; width: 60px">
+                              <select style="height: 30px;">
+                                  <optgroup selected="true" label="min"> 
+                                   <option>1</option>
+                                   <option>2</option>
+                              </select>
+                            </div>
+                        </div>
+                        <br><br>
+
+                        <div class="row" style="height: 10px;">
+                            <div class="col-lg-2" style="width: 120px">
+                              <div>
+                                  <h4><span class="label label-default">Finish Time</span></h4>
+                              </div>
+                            </div>
+
+                            <div class="col-lg-3" style="height: 10px; width: 80px">
+                              <select style="height: 30px;">
+                                  <optgroup selected="true" label="year"> 
+                                   <option>2014</option>
+                                   <option>2015</option>
+                              </select>
+                            </div>
+
+                            <div class="col-lg-3" style="height: 10px; width: 60px">
+                              <select style="height: 30px;">
+                                  <optgroup selected="true" label="month"> 
+                                   <option>1</option>
+                                   <option>2</option>
+                              </select>
+                            </div>
+
+                            <div class="col-lg-3" style="height: 10px; width: 80px">
+                              <select style="height: 30px;">
+                                  <optgroup selected="true" label="date"> 
+                                   <option>1</option>
+                                   <option>2</option>
+                              </select>
+                            </div>
+
+                            <div class="col-lg-3" style="height: 10px; width: 60px">
+                              <select style="height: 30px;">
+                                  <optgroup selected="true" label="hour"> 
+                                   <option>1</option>
+                                   <option>2</option>
+                              </select>
+                            </div>
+
+                            <div class="col-lg-3" style="height: 10px; width: 60px">
+                              <select style="height: 30px;">
+                                  <optgroup selected="true" label="min"> 
+                                   <option>1</option>
+                                   <option>2</option>
+                              </select>
+                            </div>
+                        </div>
+                        <br><br>
+   
+                        <textarea class="form-control" rows="15" style="resize: none;" placeholder="give some more details about your job ...."></textarea>              
 
 
                   </div>
@@ -323,3 +468,5 @@
     <script src="modal.js"></script>    
   </body>
 </html>
+
+
