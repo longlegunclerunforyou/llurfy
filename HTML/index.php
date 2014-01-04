@@ -216,7 +216,7 @@
 
       mysql_query($insert_str);
 
-      header("Location:main.html");  
+      header("Location:main.php");  
    ?>
 	
 

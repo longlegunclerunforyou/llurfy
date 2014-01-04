@@ -465,7 +465,127 @@
     <script src="../../dist/js/bootstrap.min.js"></script>
     <script src="offcanvas.js"></script>
     <script src="dropdown.js"></script>
-    <script src="modal.js"></script>    
+    <script src="modal.js"></script>  
+
+    <script>
+     window.fbAsyncInit = function() {
+         // init the FB JS SDK
+         FB.init({
+         appId      : FacebookAppId,                        // App ID from the app dashboard
+         cookie     : true,                                 // Allowed server-side to fetch fb auth cookie
+         status     : true,                                 // Check Facebook Login status
+         xfbml      : true                                  // Look for social plugins on the page
+         });
+
+         // Additional initialization code such as adding Event Listeners goes here
+         window.fbLoaded();
+     };
+
+     // Load the SDK asynchronously
+     (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         //js.src = "//connect.facebook.net/en_US/all.js";
+         // Debug version of Facebook JS SDK
+         js.src = "//connect.facebook.net/en_US/all/debug.js";
+         fjs.parentNode.insertBefore(js, fjs);
+     }(document, 'script', 'facebook-jssdk'));
+     </script>
+
+     <script id="my-script-playground">
+         window.fbLoaded = function(){
+             // define the events when login status changed.
+             FB.Event.subscribe('auth.login', function(response) {
+                 // when user has been logged in, this block will be triggered.
+                 var msg = "You're logged in.";
+                 $("#my-login-message").html(msg);
+                 console.log("Your login response:");
+                 console.log(response);
+
+                 // fetch the profile
+                 fetch_my_profile();
+             });
+
+             FB.getLoginStatus(function(response) {
+               if (response.status === 'connected') {
+                 // the user is logged in and has authenticated your
+                 // app, and response.authResponse supplies
+                 // the user's ID, a valid access token, a signed
+                 // request, and the time the access token 
+                 // and signed request each expire
+                 fetch_my_profile();
+                 
+
+               // } else {
+               //   // the user isn't logged in to Facebook.
+               //   FB.login(function(response){ 
+               //   scope: 'email,publish_stream'
+               //   });
+               }
+              });
+
+             // define the action when user clicked the login button.
+             $("#fb-login").click(function(){
+                 FB.login();             
+             });
+
+
+
+             // send me a friend request by using Facebok Friends Dialog
+             
+
+             var fetch_my_profile = function () {
+                 /*
+                 Fetching profile information.
+                 For more detail, please vist the following url:
+
+                 (Graph API: User documentation)
+                 https://developers.facebook.com/docs/graph-api/reference/user/
+                 */
+                 FB.api('/me', function(response) {
+                     var my_name = response.name;
+                     var my_gender = response.gender;
+                     var my_username = response.username;
+                     var my_facebook_id = response.id;
+                     var my_email = response.email;
+                     var my_location = response.location;
+
+                     $("#my-profile-name").html(my_name);
+                     $("#my-profile-gender").html(my_gender);
+                     $("#my-profile-username").html(my_username);
+                     $("#my-profile-facebook-id").html(my_facebook_id);
+                     $("#my_email").html(my_email);
+                     $("#my_location").html(my_location);
+
+                 
+                     document.cookie= 'my_facebook_id = response.id';
+                     document.cookie= 'my_username = response.username';
+                     document.cookie= 'my_email = response.email';
+                     document.cookie= 'my_location = response.location';
+                     document.cookie= 'my_gender = response.gender';
+
+
+                 });
+
+                 /*
+                 Fetching profile picture from Facebook.
+                 For more detail, please visit the following url:
+
+                 (Graph API: User/Picture reference)
+                 https://developers.facebook.com/docs/graph-api/reference/user/picture/
+                 */
+                 FB.api('/me/picture?width=250', function(response) {
+                     var my_picture_url = response.data.url;
+                 
+                     $("#my-profile-picture").attr('src', my_picture_url);
+                 });
+             };
+         };
+     </script>
+
+
+     
   </body>
 </html>
 
