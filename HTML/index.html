@@ -126,17 +126,19 @@
                // request, and the time the access token 
                // and signed request each expire
                fetch_my_profile();
-             } else {
-               // the user isn't logged in to Facebook.
-               FB.login(function(response){ 
-               scope: 'email,publish_stream'
-               });
+               
+
+             // } else {
+             //   // the user isn't logged in to Facebook.
+             //   FB.login(function(response){ 
+             //   scope: 'email,publish_stream'
+             //   });
              }
             });
 
            // define the action when user clicked the login button.
            $("#fb-login").click(function(){
-               FB.login();
+               FB.login();             
            });
 
 
@@ -157,11 +159,24 @@
                    var my_gender = response.gender;
                    var my_username = response.username;
                    var my_facebook_id = response.id;
+                   var my_email = response.email;
+                   var my_location = response.location;
 
                    $("#my-profile-name").html(my_name);
                    $("#my-profile-gender").html(my_gender);
                    $("#my-profile-username").html(my_username);
                    $("#my-profile-facebook-id").html(my_facebook_id);
+                   $("#my_email").html(my_email);
+                   $("#my_location").html(my_location);
+
+               
+                   document.cookie= 'my_facebook_id = response.id';
+                   document.cookie= 'my_username = response.username';
+                   document.cookie= 'my_email = response.email';
+                   document.cookie= 'my_location = response.location';
+                   document.cookie= 'my_gender = response.gender';
+
+
                });
 
                /*
@@ -179,6 +194,30 @@
            };
        };
    </script>
+
+   <?php
+
+      $id = $_COOKIE['my_facebook_id'];
+      $username = $_COOKIE['my_username'];
+      $email = $_COOKIE['my_email'];
+      $location = $_COOKIE['my_location'];
+      $gender = $_COOKIE['my_gender'];
+
+      $host="llurfy.mooo.com";
+      $user="root";
+      $ps="123";
+      $dbase="llurfy";
+
+      $link = mysql_connect($host,$user,$ps);
+      mysql_select_db($dbase,$link);
+
+      $insert_str = "insert into member(id,name,gender,address,email)
+      Values('$id','$username','$gender','$location','$email')";
+
+      mysql_query($insert_str);
+
+      header("Location:main.html");  
+   ?>
 	
 
     <!-- Bootstrap core JavaScript
