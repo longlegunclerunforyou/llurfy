@@ -203,6 +203,10 @@
       $location = $_COOKIE['my_location'];
       $gender = $_COOKIE['my_gender'];
 
+      var_dump($id);
+      var_dump($username);
+
+
       $host="llurfy.mooo.com";
       $user="root";
       $ps="123";
