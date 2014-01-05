@@ -64,19 +64,10 @@
        fjs.parentNode.insertBefore(js, fjs);
    }(document, 'script', 'facebook-jssdk'));
    </script>
-    <div>
+    
 
-
-
-
-
-
-
-
-
-
-
-
+    <div align="center">
+          <img src ="a-2.png" >
     </div>
 
 
