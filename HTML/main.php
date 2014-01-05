@@ -17,6 +17,7 @@
     <link href="./tc/offcanvas.css" rel="stylesheet">
     <link href="./tc/navbar-fixed-top.css" rel="stylesheet">
 
+    <link rel="stylesheet" type="text/css" href="jquery.datetimepicker.css"/ >
 
 
     <!-- Just for debugging purposes. Don't actually copy this line! -->
@@ -225,9 +226,6 @@
 
       <hr>
 
-      <footer>
-        <p>&copy; Company 2013</p>
-      </footer>
 
     </div><!--/.container-->
 
@@ -235,204 +233,217 @@
             <div class="modal fade " id="myModalA" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
               <div class="modal-dialog ">
                 <div class="modal-content">
+                  <form name="form1" method="post" action="addpost.php">
                   <div class="modal-header" style="background:#CDFEFF">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 class="modal-title" id="myModalLabel">Post job!!!</h4>
                   </div>
-                  <div class="modal-body">
-                        
-                        <div class="input-group">
-                          <span class="input-group-addon">Topic</span>
-                          <input type="text" class="form-control" placeholder="please decribe the job you'll post in one sentence">
-                        </div>
-                        <br>
+                    
+                      <div class="modal-body">
+                            
+                            <div class="input-group">
+                              <span class="input-group-addon">Topic</span>
+                              <input type="text" class="form-control" placeholder="please decribe the job you'll post in one sentence" name="in_topic">
+                            </div>
+                            <br>
 
-                        <div class="input-group">
-                          <span class="input-group-addon">Locations</span>
-                          <input type="text" class="form-control" placeholder="where to work , if there're more places need to go. pls type them all.">
-                        </div>
-                        <br>   
+                            <div class="input-group">
+                              <span class="input-group-addon">Locations</span>
+                              <input type="text" class="form-control" placeholder="where to work , if there're more places need to go. pls type them all." name="in_location">
+                            </div>
+                            <br>   
 
-                        
+                            
 
 
-                        <div class="input-group">
-                          <span class="input-group-addon">Reward</span>
-                          <input type="text" class="form-control" placeholder="Money , something or nothing">
-                        </div>
-                        <br>   
+                            <div class="input-group">
+                              <span class="input-group-addon">Reward</span>
+                              <input type="text" class="form-control" placeholder="Money , something or nothing" name="in_reward">
+                            </div>
 
-                        <!--div class="row">
-                            <div class="col-lg-6">
-                              <div class="input-group">
-                                  <span class="input-group-addon">Start Time</span>
-                                  <input type="text" class="form-control" placeholder="Ex :2014/7/9 3:00PM">
+                            <!--div class="row">
+                                <div class="col-lg-6">
+                                  <div class="input-group">
+                                      <span class="input-group-addon">Start Time</span>
+                                      <input type="text" class="form-control" placeholder="Ex :2014/7/9 3:00PM">
+                                  </div>
+                                </div>
+
+                                <div class="col-lg-6">
+                                  <div class="input-group">                            
+                                      <span class="input-group-addon">Finish Time</span>
+                                      <input type="text" class="form-control" placeholder="EX :2015/8/10 4:00AM">
+                                  </div>
+                                </div>
+                            </div>
+                            <br-->
+
+                            <!--div class="row" style="height: 40px;">
+                                <div class="col-lg-2">
+                                  <div>
+                                      <h4><span class="label label-default">Start Time</span></h4>
+                                  </div>
+                                </div>
+
+                                <div class="col-lg-3">
+                                  <select class="form-control">
+                                        <option>2014</option>
+                                        <option>2015</option>
+                                        <option>2016</option>
+                                  </select>
+                                </div>
+
+                                <div class="col-lg-3">
+                                  <select class="form-control">
+                                        <option>Jan</option>
+                                        <option>Feb</option>
+                                        <option>Mar</option>
+                                        <option>Apr</option>
+                                        <option>May</option>
+                                  </select>
+                                </div>
+
+                                <div class="col-lg-2">
+                                  <select class="form-control">
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                  </select>
+                                </div>
+
+                                <div class="col-lg-2">
+                                  <select class="form-control">
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                  </select>
+                                </div>
+                            </div>
+                            <br-->
+
+                            <!--div class="row" style="height: 10px;">
+                                <div class="col-lg-2" style="width: 120px">
+                                  <div>
+                                      <h4><span class="label label-default">Start Time</span></h4>
+                                  </div>
+                                </div>
+
+                                <div class="col-lg-3" style="height: 10px; width: 80px">
+                                  <select style="height: 30px;">
+                                      <optgroup selected="true" label="year"> 
+                                       <option>2014</option>
+                                       <option>2015</option>
+                                  </select>
+                                </div>
+
+                                <div class="col-lg-3" style="height: 10px; width: 60px">
+                                  <select style="height: 30px;">
+                                      <optgroup selected="true" label="month"> 
+                                       <option>1</option>
+                                       <option>2</option>
+                                  </select>
+                                </div>
+
+                                <div class="col-lg-3" style="height: 10px; width: 80px">
+                                  <select style="height: 30px;">
+                                      <optgroup selected="true" label="date"> 
+                                       <option>1</option>
+                                       <option>2</option>
+                                  </select>
+                                </div>
+
+                                <div class="col-lg-3" style="height: 10px; width: 60px">
+                                  <select style="height: 30px;">
+                                      <optgroup selected="true" label="hour"> 
+                                       <option>1</option>
+                                       <option>2</option>
+                                  </select>
+                                </div>
+
+                                <div class="col-lg-3" style="height: 10px; width: 60px">
+                                  <select style="height: 30px;">
+                                      <optgroup selected="true" label="min"> 
+                                       <option>1</option>
+                                       <option>2</option>
+                                  </select>
+                                </div>
+                            </div>
+                            <br><br>
+
+                            <div class="row" style="height: 10px;">
+                                <div class="col-lg-2" style="width: 120px">
+                                  <div>
+                                      <h4><span class="label label-default">Finish Time</span></h4>
+                                  </div>
+                                </div>
+
+                                <div class="col-lg-3" style="height: 10px; width: 80px">
+                                  <select style="height: 30px;">
+                                      <optgroup selected="true" label="year"> 
+                                       <option>2014</option>
+                                       <option>2015</option>
+                                  </select>
+                                </div>
+
+                                <div class="col-lg-3" style="height: 10px; width: 60px">
+                                  <select style="height: 30px;">
+                                      <optgroup selected="true" label="month"> 
+                                       <option>1</option>
+                                       <option>2</option>
+                                  </select>
+                                </div>
+
+                                <div class="col-lg-3" style="height: 10px; width: 80px">
+                                  <select style="height: 30px;">
+                                      <optgroup selected="true" label="date"> 
+                                       <option>1</option>
+                                       <option>2</option>
+                                  </select>
+                                </div>
+
+                                <div class="col-lg-3" style="height: 10px; width: 60px">
+                                  <select style="height: 30px;">
+                                      <optgroup selected="true" label="hour"> 
+                                       <option>1</option>
+                                       <option>2</option>
+                                  </select>
+                                </div>
+
+                                <div class="col-lg-3" style="height: 10px; width: 60px">
+                                  <select style="height: 30px;">
+                                      <optgroup selected="true" label="min"> 
+                                       <option>1</option>
+                                       <option>2</option>
+                                  </select>
+                                </div>
+                            </div>
+                            <br-->
+
+                            <div class = "row">
+                              <div class="col-lg-6">
+                                <h4><span class="label label-default">Start Time</span></h4>
+                                <input type="text" value="2014/03/15 05:06" id="datetimepicker" name="in_st"><br>
+                              </div>
+
+                              <div class="col-lg-6">
+                                <h4><span class="label label-default">Finish Time</span></h4>
+                                <input type="text" value="2015/06/20 07:08" id="datetimepicker2" name="in_ft"><br>                        
                               </div>
                             </div>
-
-                            <div class="col-lg-6">
-                              <div class="input-group">                            
-                                  <span class="input-group-addon">Finish Time</span>
-                                  <input type="text" class="form-control" placeholder="EX :2015/8/10 4:00AM">
-                              </div>
-                            </div>
-                        </div>
-                        <br-->
-
-                        <!--div class="row" style="height: 40px;">
-                            <div class="col-lg-2">
-                              <div>
-                                  <h4><span class="label label-default">Start Time</span></h4>
-                              </div>
-                            </div>
-
-                            <div class="col-lg-3">
-                              <select class="form-control">
-                                    <option>2014</option>
-                                    <option>2015</option>
-                                    <option>2016</option>
-                              </select>
-                            </div>
-
-                            <div class="col-lg-3">
-                              <select class="form-control">
-                                    <option>Jan</option>
-                                    <option>Feb</option>
-                                    <option>Mar</option>
-                                    <option>Apr</option>
-                                    <option>May</option>
-                              </select>
-                            </div>
-
-                            <div class="col-lg-2">
-                              <select class="form-control">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                              </select>
-                            </div>
-
-                            <div class="col-lg-2">
-                              <select class="form-control">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                              </select>
-                            </div>
-                        </div>
-                        <br-->
-
-                        <div class="row" style="height: 10px;">
-                            <div class="col-lg-2" style="width: 120px">
-                              <div>
-                                  <h4><span class="label label-default">Start Time</span></h4>
-                              </div>
-                            </div>
-
-                            <div class="col-lg-3" style="height: 10px; width: 80px">
-                              <select style="height: 30px;">
-                                  <optgroup selected="true" label="year"> 
-                                   <option>2014</option>
-                                   <option>2015</option>
-                              </select>
-                            </div>
-
-                            <div class="col-lg-3" style="height: 10px; width: 60px">
-                              <select style="height: 30px;">
-                                  <optgroup selected="true" label="month"> 
-                                   <option>1</option>
-                                   <option>2</option>
-                              </select>
-                            </div>
-
-                            <div class="col-lg-3" style="height: 10px; width: 80px">
-                              <select style="height: 30px;">
-                                  <optgroup selected="true" label="date"> 
-                                   <option>1</option>
-                                   <option>2</option>
-                              </select>
-                            </div>
-
-                            <div class="col-lg-3" style="height: 10px; width: 60px">
-                              <select style="height: 30px;">
-                                  <optgroup selected="true" label="hour"> 
-                                   <option>1</option>
-                                   <option>2</option>
-                              </select>
-                            </div>
-
-                            <div class="col-lg-3" style="height: 10px; width: 60px">
-                              <select style="height: 30px;">
-                                  <optgroup selected="true" label="min"> 
-                                   <option>1</option>
-                                   <option>2</option>
-                              </select>
-                            </div>
-                        </div>
-                        <br><br>
-
-                        <div class="row" style="height: 10px;">
-                            <div class="col-lg-2" style="width: 120px">
-                              <div>
-                                  <h4><span class="label label-default">Finish Time</span></h4>
-                              </div>
-                            </div>
-
-                            <div class="col-lg-3" style="height: 10px; width: 80px">
-                              <select style="height: 30px;">
-                                  <optgroup selected="true" label="year"> 
-                                   <option>2014</option>
-                                   <option>2015</option>
-                              </select>
-                            </div>
-
-                            <div class="col-lg-3" style="height: 10px; width: 60px">
-                              <select style="height: 30px;">
-                                  <optgroup selected="true" label="month"> 
-                                   <option>1</option>
-                                   <option>2</option>
-                              </select>
-                            </div>
-
-                            <div class="col-lg-3" style="height: 10px; width: 80px">
-                              <select style="height: 30px;">
-                                  <optgroup selected="true" label="date"> 
-                                   <option>1</option>
-                                   <option>2</option>
-                              </select>
-                            </div>
-
-                            <div class="col-lg-3" style="height: 10px; width: 60px">
-                              <select style="height: 30px;">
-                                  <optgroup selected="true" label="hour"> 
-                                   <option>1</option>
-                                   <option>2</option>
-                              </select>
-                            </div>
-
-                            <div class="col-lg-3" style="height: 10px; width: 60px">
-                              <select style="height: 30px;">
-                                  <optgroup selected="true" label="min"> 
-                                   <option>1</option>
-                                   <option>2</option>
-                              </select>
-                            </div>
-                        </div>
-                        <br><br>
-   
-                        <textarea class="form-control" rows="15" style="resize: none;" placeholder="give some more details about your job ...."></textarea>              
-
-
-                  </div>
+                            <br>
+       
+                            <textarea class="form-control text" rows="15" style="resize: none;" placeholder="give some more details about your job ...." name="in_des"></textarea>                                
+                      </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Post!!</button>
-                  </div>
-                </div><!-- /.modal-content -->
+                    <button type="submit" class="btn btn-primary" value="Post!!">Post!!</button>
+                  
+                  </div><!-- /.modal-content -->
+                  </form>
               </div><!-- /.modal-dialog -->
             </div><!-- /.modal -->
 
@@ -455,6 +466,8 @@
                 </div><!-- /.modal-content -->
               </div><!-- /.modal-dialog -->
             </div><!-- /.modal -->
+
+
 
 
 
@@ -584,8 +597,17 @@
          };
      </script>
 
+     <script src="jquery.js"></script>
+     <script src="jquery.datetimepicker.js"></script>
 
-     
+     <script>
+     $('#datetimepicker').datetimepicker({value:'2015/04/15 05:03',step:10});
+     </script>
+
+     <script>
+     $('#datetimepicker2').datetimepicker({value:'2015/06/20 07:08',step:10});
+     </script>
+
   </body>
 </html>
 
