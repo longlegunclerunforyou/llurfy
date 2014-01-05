@@ -63,7 +63,7 @@
           <ul class="nav navbar-nav navbar-right">
             <li><a href="../navbar/">Default</a></li>
             <li><a href="../navbar-static-top/">Static top</a></li>
-            <li><a href="./">Log out</a></li>
+            <li><a href="./" class="btn" id="fb-logout">Log out</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -467,7 +467,12 @@
               </div><!-- /.modal-dialog -->
             </div><!-- /.modal -->
 
+    <?php
 
+      $my_facebook_id = $_POST["my_username"];
+
+      var_dump($my_facebook_id);
+    ?>
 
 
 
@@ -508,6 +513,10 @@
 
      <script id="my-script-playground">
          window.fbLoaded = function(){
+
+             var 
+
+
              // define the events when login status changed.
              FB.Event.subscribe('auth.login', function(response) {
                  // when user has been logged in, this block will be triggered.
@@ -541,6 +550,19 @@
              // define the action when user clicked the login button.
              $("#fb-login").click(function(){
                  FB.login();             
+             }
+
+
+
+             $("#fb-logout").click(function(){
+                 FB.logout();
+
+                
+                document.cookie = my_facebook_id + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+                document.cookie = my_username + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+                document.cookie = my_email + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+                document.cookie = my_location + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+                document.cookie = my_gender + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
              });
 
 
@@ -572,11 +594,11 @@
                      $("#my_location").html(my_location);
 
                  
-                     document.cookie= 'my_facebook_id = response.id';
-                     document.cookie= 'my_username = response.username';
-                     document.cookie= 'my_email = response.email';
-                     document.cookie= 'my_location = response.location';
-                     document.cookie= 'my_gender = response.gender';
+                     // document.cookie= 'my_facebook_id = response.id';
+                     // document.cookie= 'my_username = response.username';
+                     // document.cookie= 'my_email = response.email';
+                     // document.cookie= 'my_location = response.location';
+                     // document.cookie= 'my_gender = response.gender';
 
 
                  });

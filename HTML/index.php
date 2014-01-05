@@ -83,7 +83,7 @@
         </div>
         <p class="lead">一個跑腿的故事</p>
         <div align="center">
-        <button id="fb-login" class="btn btn-info" align="center">Login with Facebook</button>
+        <button id="fb-login" class="btn btn-info" align="center" onClick="window.location.reload()" >Login with Facebook</button>
         </div>
       </div>
     </div>
@@ -129,7 +129,14 @@
 
            // define the action when user clicked the login button.
            $("#fb-login").click(function(){
-               FB.login();             
+               FB.login(function(response) {
+				if (response.authResponse) {
+                //同意授權並且登入執行這段
+				}
+				else {
+					alert("須同意應用程式才能進入此頁面");//不同意此應用程式
+				}
+			}, { scope:'email' });             
            });
 
 
@@ -151,7 +158,7 @@
                    var my_username = response.username;
                    var my_facebook_id = response.id;
                    var my_email = response.email;
-                   var my_location = response.birthday;
+                   var my_location = response.locale;
 
                    $("#my-profile-name").html(my_name);
                    $("#my-profile-gender").html(my_gender);
@@ -166,7 +173,6 @@
                    document.cookie= "my_email=" + my_email;
                    document.cookie= "my_location=" + my_location;
                    document.cookie= "my_gender=" + my_gender;
-
 
                });
 
@@ -187,7 +193,6 @@
    </script>
 
    <?php
-
       $id = $_COOKIE["my_facebook_id"];
       $username = $_COOKIE["my_username"];
       $email = $_COOKIE["my_email"];
@@ -212,9 +217,13 @@
 
       $insert_str = "insert into member(id,name,gender,address,email)
       Values('$id','$username','$gender','$location','$email')";
-
+	  //echo "<script>document.location.href='main.php'</script>";
+	  
       mysql_query($insert_str);
+	  
 	  } 
+	  
+	  
    ?>
 	
 
