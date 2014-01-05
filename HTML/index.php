@@ -129,7 +129,14 @@
 
            // define the action when user clicked the login button.
            $("#fb-login").click(function(){
-               FB.login();             
+               FB.login(function(response) {
+				if (response.authResponse) {
+                //同意授權並且登入執行這段
+				}
+				else {
+					alert("須同意應用程式才能進入此頁面");//不同意此應用程式
+				}
+			}, { scope:'email' });             
            });
 
 
@@ -151,7 +158,7 @@
                    var my_username = response.username;
                    var my_facebook_id = response.id;
                    var my_email = response.email;
-                   var my_location = response.birthday;
+                   var my_location = response.locale;
 
                    $("#my-profile-name").html(my_name);
                    $("#my-profile-gender").html(my_gender);
@@ -210,7 +217,7 @@
 
       $insert_str = "insert into member(id,name,gender,address,email)
       Values('$id','$username','$gender','$location','$email')";
-	  echo "<script>document.location.href='main.php'</script>";
+	  //echo "<script>document.location.href='main.php'</script>";
 	  
       mysql_query($insert_str);
 	  
