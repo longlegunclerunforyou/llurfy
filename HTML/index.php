@@ -77,7 +77,7 @@
 
       <!-- Begin page content -->
       <div class="container" align="center">
-        <img src="logo.jpg">
+
         <div class="page-header center">
           <h1>長腿叔叔 Run for you</h1>
         </div>
