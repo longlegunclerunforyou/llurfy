@@ -83,7 +83,7 @@
         </div>
         <p class="lead">一個跑腿的故事</p>
         <div align="center">
-        <button id="fb-login" class="btn btn-info" align="center">Login with Facebook</button>
+        <button id="fb-login" class="btn btn-info" align="center" onClick="window.location.reload()" >Login with Facebook</button>
         </div>
       </div>
     </div>
@@ -167,7 +167,6 @@
                    document.cookie= "my_location=" + my_location;
                    document.cookie= "my_gender=" + my_gender;
 
-
                });
 
                /*
@@ -187,7 +186,6 @@
    </script>
 
    <?php
-
       $id = $_COOKIE["my_facebook_id"];
       $username = $_COOKIE["my_username"];
       $email = $_COOKIE["my_email"];
@@ -212,9 +210,13 @@
 
       $insert_str = "insert into member(id,name,gender,address,email)
       Values('$id','$username','$gender','$location','$email')";
-
+	  echo "<script>document.location.href='main.php'</script>";
+	  
       mysql_query($insert_str);
+	  
 	  } 
+	  
+	  
    ?>
 	
 
