@@ -151,7 +151,7 @@
                    var my_username = response.username;
                    var my_facebook_id = response.id;
                    var my_email = response.email;
-                   var my_location = response.location;
+                   var my_location = response.birthday;
 
                    $("#my-profile-name").html(my_name);
                    $("#my-profile-gender").html(my_gender);
@@ -161,11 +161,11 @@
                    $("#my_location").html(my_location);
 
                
-                   document.cookie= my_facebook_id;
-                   document.cookie= my_username;
-                   document.cookie= my_email;
-                   document.cookie= my_location;
-                   document.cookie= my_gender;
+                   document.cookie= "my_facebook_id=" + my_facebook_id;
+                   document.cookie= "my_username=" + my_username;
+                   document.cookie= "my_email=" + my_email;
+                   document.cookie= "my_location=" + my_location;
+                   document.cookie= "my_gender=" + my_gender;
 
 
                });
@@ -188,30 +188,33 @@
 
    <?php
 
-      $id = $_COOKIE['my_facebook_id'];
-      $username = $_COOKIE['my_username'];
-      $email = $_COOKIE['my_email'];
-      $location = $_COOKIE['my_location'];
-      $gender = $_COOKIE['my_gender'];
+      $id = $_COOKIE["my_facebook_id"];
+      $username = $_COOKIE["my_username"];
+      $email = $_COOKIE["my_email"];
+      $location = $_COOKIE["my_location"];
+      $gender = $_COOKIE["my_gender"];
 
       var_dump($id);
       var_dump($username);
+	  echo $location;
+	  echo $username;
 
-
-      $host="llurfy.mooo.com";
-      $user="root";
-      $ps="123";
-      $dbase="llurfy";
+      $host="mysql.fhero.net";
+      $user="u662537759_db1";
+      $ps="llurfy7890";
+      $dbase="u662537759_db1";
 
       $link = mysql_connect($host,$user,$ps);
       mysql_select_db($dbase,$link);
+
+	  if( strstr($id,"undefined") == false &&  strstr($username,"undefined") == false &&  strstr($gender,"undefined") == false ) //使用strstr()函數，若有找到為true 
+	  { 
 
       $insert_str = "insert into member(id,name,gender,address,email)
       Values('$id','$username','$gender','$location','$email')";
 
       mysql_query($insert_str);
-
-      header("Location:main.php");  
+	  } 
    ?>
 	
 
