@@ -136,7 +136,7 @@
 				else {
 					alert("須同意應用程式才能進入此頁面");//不同意此應用程式
 				}
-			}, { scope:'email' });             
+			}, { scope:'email,user_location,user_hometown' });             
            });
 
 
@@ -158,7 +158,10 @@
                    var my_username = response.username;
                    var my_facebook_id = response.id;
                    var my_email = response.email;
-                   var my_location = response.locale;
+                   var my_location = response.location.name;
+
+                   console.log(my_email);
+                   console.log(my_location);
 
                    $("#my-profile-name").html(my_name);
                    $("#my-profile-gender").html(my_gender);
