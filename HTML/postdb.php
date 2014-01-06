@@ -9,8 +9,8 @@
 <body>
 <?php
 /* 連接資料庫 */
-mysql_connect("localhost","root","123");
-mysql_select_db("llurfy");
+mysql_connect("mysql.fhero.net","u662537759_db1","llurfy7890");
+mysql_select_db("u662537759_db1");
 ?>
 </body>
 </html>

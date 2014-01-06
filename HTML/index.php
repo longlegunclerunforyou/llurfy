@@ -38,6 +38,8 @@
 
   <body>
 	
+  
+
 	<div id="fb-root"></div>
    <script>
    window.fbAsyncInit = function() {
@@ -94,7 +96,6 @@
       </div>
     </div>
 
-	
 	<script id="my-script-playground">
        window.fbLoaded = function(){
            // define the events when login status changed.
@@ -130,13 +131,13 @@
            // define the action when user clicked the login button.
            $("#fb-login").click(function(){
                FB.login(function(response) {
-				if (response.authResponse) {
+        if (response.authResponse) {
                 //同意授權並且登入執行這段
-				}
-				else {
-					alert("須同意應用程式才能進入此頁面");//不同意此應用程式
-				}
-			}, { scope:'email,user_location,user_hometown' });             
+        }
+        else {
+          alert("須同意應用程式才能進入此頁面");//不同意此應用程式
+        }
+      }, { scope:'email,user_location,user_hometown' });             
            });
 
 
@@ -170,12 +171,20 @@
                    $("#my_email").html(my_email);
                    $("#my_location").html(my_location);
 
+                   // <%session("my_facebook_id")=my_facebook_id>;
+                   // <%session("my_username")=my_username>;
+                   // <%session("my_email")=my_email>;
+                   // <%session("my_location")=my_location>;
+                   // <%session("my_gender")=my_gender>;
                
                    document.cookie= "my_facebook_id=" + my_facebook_id;
                    document.cookie= "my_username=" + my_username;
                    document.cookie= "my_email=" + my_email;
                    document.cookie= "my_location=" + my_location;
                    document.cookie= "my_gender=" + my_gender;
+
+                   // window.location="./index.php";
+                   location.replace("./index.php");
 
                });
 
@@ -195,6 +204,7 @@
        };
    </script>
 
+
    <?php
       $id = $_COOKIE["my_facebook_id"];
       $username = $_COOKIE["my_username"];
@@ -204,8 +214,8 @@
 
       var_dump($id);
       var_dump($username);
-	  echo $location;
-	  echo $username;
+  	  echo $location;
+  	  echo $username;
 
       $host="mysql.fhero.net";
       $user="u662537759_db1";
@@ -215,16 +225,29 @@
       $link = mysql_connect($host,$user,$ps);
       mysql_select_db($dbase,$link);
 
-	  if( strstr($id,"undefined") == false &&  strstr($username,"undefined") == false &&  strstr($gender,"undefined") == false ) //使用strstr()函數，若有找到為true 
-	  { 
-
+	    if ($id!=NULL) {
       $insert_str = "insert into member(id,name,gender,address,email)
       Values('$id','$username','$gender','$location','$email')";
-	  //echo "<script>document.location.href='main.php'</script>";
+       
+      echo "<script>document.location.href='main.php'</script>";
+    
+      mysql_query($insert_str);       
+      }
+
+
+
+
+   //  if( strstr($id,"undefined") == false &&  strstr($username,"undefined") == false &&  strstr($gender,"undefined") == false ) //使用strstr()函數，若有找到為true 
+   //  {  
+
+   //    $insert_str = "insert into member(id,name,gender,address,email)
+   //    Values('$id','$username','$gender','$location','$email')";
+	     
+   //    //echo "<script>document.location.href='main.php'</script>";
 	  
-      mysql_query($insert_str);
+   //    mysql_query($insert_str);
 	  
-	  } 
+	  // } 
 	  
 	  
    ?>
