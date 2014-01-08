@@ -13,8 +13,8 @@ $des=$_POST["in_des"];
  $name = $_COOKIE["my_username"];
 
 /* 將欄位資料資入資料庫 */
-$sql="INSERT post(name,id,topic,location,description,starttime,deadline)
-      Values('$name','$id','$topic','$location','$des','$st','$ft')";
+$sql="INSERT post(name,id,topic,location,reward,description,starttime,deadline)
+      Values('$name','$id','$topic','$location','$reward','$des','$st','$ft')";
 mysql_query($sql);
 
 echo "<script>document.location.href='main.php'</script>";

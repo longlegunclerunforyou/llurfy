@@ -1,158 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="shortcut icon" href="../../docs-assets/ico/favicon.png">
+ <head>
+    <!--
+    Facebook Code Example
+    @author: LittleQ <littleq0903@gmail.com>
+    @date: 2013-11-23
+    -->
+    <meta charset="UTF-8">
+    <title>FB API EXAMPLE</title>
 
-    <title>Sticky Footer Template for Bootstrap</title>
+    <!-- BLOCK: Loading libraries -->
+    <script src="./your_secret.js"></script>
+    <script src="../your_secret.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <!-- ENDBLOCK: Loading libraries -->
 
-    <!-- Bootstrap core CSS -->
-    <link href="./dist/css/bootstrap.css" rel="stylesheet">
+</head>
 
-    <!-- Custom styles for this template -->
-    <link href="./tc/sticky-footer.css" rel="stylesheet">
-	
-	
-	<!-- BLOCK: Loading libraries -->
-   <script src="./your_secret.js"></script>
-   <script src="../your_secret.js"></script>
-   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-   <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
-   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
-   <!-- ENDBLOCK: Loading libraries -->
-	
+<body>
+    <!-- BLOCK: FB SDK initialization -->
+    <div id="fb-root"></div>
 
-    <!-- Just for debugging purposes. Don't actually copy this line! -->
-    <!--[if lt IE 9]><script src="../../docs-assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+      <div align="center"><img src ="a-2.png" ></div>
 
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-    <![endif]-->
-  </head>
-
-  <body>
-	
-  
-
-	<div id="fb-root"></div>
-   <script>
-   window.fbAsyncInit = function() {
-       // init the FB JS SDK
-       FB.init({
-       appId      : FacebookAppId,                        // App ID from the app dashboard
-       cookie     : true,                                 // Allowed server-side to fetch fb auth cookie
-       status     : true,                                 // Check Facebook Login status
-       xfbml      : true                                  // Look for social plugins on the page
-       });
-
-       // Additional initialization code such as adding Event Listeners goes here
-       window.fbLoaded();
-   };
-
-   // Load the SDK asynchronously
-   (function(d, s, id){
-       var js, fjs = d.getElementsByTagName(s)[0];
-       if (d.getElementById(id)) {return;}
-       js = d.createElement(s); js.id = id;
-       //js.src = "//connect.facebook.net/en_US/all.js";
-       // Debug version of Facebook JS SDK
-       js.src = "//connect.facebook.net/en_US/all/debug.js";
-       fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-   </script>
-    
-
-    <div align="center">
-          <img src ="a-2.png" >
-    </div>
-
-
-
-    <!-- Wrap all page content here -->
-    <div id="wrap">
-
-      <!-- Begin page content -->
-      <div class="container" align="center">
-
-        <div class="page-header center">
-          <h1>長腿叔叔 Run for you</h1>
-        </div>
+      <div id="my-html-playground"  class="container" align="center">
+        <h1>長腿叔叔 Run for you</h1>
         <p class="lead">一個跑腿的故事</p>
-        <div align="center">
-        <button id="fb-login" class="btn btn-info" align="center" onClick="window.location.reload()" >Login with Facebook</button>
+        <div id="my-login-control" class="well">
+            <button id="my-login-button" class="btn btn-primary">Login with Facebook</button>
         </div>
       </div>
-    </div>
 
     <div id="footer">
-      <div class="container">
         <p class="text-muted">University of Taipei - Computer Science - Social Network Application.</p>
-      </div>
     </div>
 
+
+   <script>
+    window.fbAsyncInit = function() {
+        // init the FB JS SDK
+        FB.init({
+        appId      : FacebookAppId,                        // App ID from the app dashboard
+        cookie     : true,                                 // Allowed server-side to fetch fb auth cookie
+        status     : true,                                 // Check Facebook Login status
+        xfbml      : true                                  // Look for social plugins on the page
+        });
+
+
+        window.fbLoaded();
+        // Additional initialization code such as adding Event Listeners goes here
+    };
+
+    // Load the SDK asynchronously
+    (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        //js.src = "//connect.facebook.net/en_US/all.js";
+        // Debug version of Facebook JS SDK
+        js.src = "//connect.facebook.net/en_US/all/debug.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+   </script>
+    
 	<script id="my-script-playground">
-       window.fbLoaded = function(){
-           // define the events when login status changed.
-           FB.Event.subscribe('auth.login', function(response) {
-               // when user has been logged in, this block will be triggered.
-               var msg = "You're logged in.";
-               $("#my-login-message").html(msg);
-               console.log("Your login response:");
-               console.log(response);
-
-               // fetch the profile
-               fetch_my_profile();
-           });
-
-           FB.getLoginStatus(function(response) {
-             if (response.status === 'connected') {
-               // the user is logged in and has authenticated your
-               // app, and response.authResponse supplies
-               // the user's ID, a valid access token, a signed
-               // request, and the time the access token 
-               // and signed request each expire
-               fetch_my_profile();
-               
-
-             // } else {
-             //   // the user isn't logged in to Facebook.
-             //   FB.login(function(response){ 
-             //   scope: 'email,publish_stream'
-             //   });
-             }
-            });
-
-           // define the action when user clicked the login button.
-           $("#fb-login").click(function(){
-               FB.login(function(response) {
-        if (response.authResponse) {
-                //同意授權並且登入執行這段
-        }
-        else {
-          alert("須同意應用程式才能進入此頁面");//不同意此應用程式
-        }
-      }, { scope:'email,user_location,user_hometown' });             
-           });
-
-
-
-           // send me a friend request by using Facebok Friends Dialog
-           
+            window.fbLoaded = function () {
+                // this function will be invoked after the FB.init().
+                // define the events when login status changed.
+                FB.Event.subscribe('auth.login', function(response) {
+                    fetch_my_profile(); 
+                    // when user has been logged in, this block will be triggered.
+                    var msg = "You're logged in.";
+                    $("#my-login-message").html(msg);
+                    // print out the response in the console.
+                    console.log("Your login response:");
+                    console.log(response);
+                });     
+                    // define the action when user clicked the login button.
+                $("#my-login-button").click(function(){
+                    FB.login(function(response) {
+                    }, {scope: 'email,user_location,user_hometown'});
+                });  
 
            var fetch_my_profile = function () {
-               /*
-               Fetching profile information.
-               For more detail, please vist the following url:
-
-               (Graph API: User documentation)
-               https://developers.facebook.com/docs/graph-api/reference/user/
-               */
                FB.api('/me', function(response) {
                    var my_name = response.name;
                    var my_gender = response.gender;
@@ -160,16 +92,9 @@
                    var my_facebook_id = response.id;
                    var my_email = response.email;
                    var my_location = response.location.name;
-
-                   console.log(my_email);
-                   console.log(my_location);
-
-                   $("#my-profile-name").html(my_name);
-                   $("#my-profile-gender").html(my_gender);
-                   $("#my-profile-username").html(my_username);
-                   $("#my-profile-facebook-id").html(my_facebook_id);
-                   $("#my_email").html(my_email);
-                   $("#my_location").html(my_location);
+                   
+                   //console.log(my_email);
+                   //console.log(my_location);
 
                    // <%session("my_facebook_id")=my_facebook_id>;
                    // <%session("my_username")=my_username>;
@@ -182,26 +107,22 @@
                    document.cookie= "my_email=" + my_email;
                    document.cookie= "my_location=" + my_location;
                    document.cookie= "my_gender=" + my_gender;
-
-                   // window.location="./index.php";
-                   location.replace("./index.php");
+                   
+                   
 
                });
+  
+                    FB.api('/me/picture?width=250', function(response) {
+                        var my_picture_url = response.data.url;
+                    
+                        document.cookie= "my_picture_url=" + my_picture_url;
+                    });
 
-               /*
-               Fetching profile picture from Facebook.
-               For more detail, please visit the following url:
 
-               (Graph API: User/Picture reference)
-               https://developers.facebook.com/docs/graph-api/reference/user/picture/
-               */
-               FB.api('/me/picture?width=250', function(response) {
-                   var my_picture_url = response.data.url;
-               
-                   $("#my-profile-picture").attr('src', my_picture_url);
-               });
            };
+
        };
+
    </script>
 
 
@@ -211,11 +132,15 @@
       $email = $_COOKIE["my_email"];
       $location = $_COOKIE["my_location"];
       $gender = $_COOKIE["my_gender"];
+      $pictureurl = $_COOKIE["my_picture_url"];
+
 
       var_dump($id);
       var_dump($username);
-  	  echo $location;
-  	  echo $username;
+      var_dump($email);
+      var_dump($location);
+      var_dump($gender);
+      var_dump($pictureurl);
 
       $host="mysql.fhero.net";
       $user="u662537759_db1";
@@ -225,18 +150,15 @@
       $link = mysql_connect($host,$user,$ps);
       mysql_select_db($dbase,$link);
 
-	    if ($id!=NULL) {
-      $insert_str = "insert into member(id,name,gender,address,email)
-      Values('$id','$username','$gender','$location','$email')";
+	    if (is_null($id) == false) {
+
+      $insert_str = "insert into member(id,name,gender,address,email,pic)
+      Values('$id','$username','$gender','$location','$email','$pictureurl')";
        
       echo "<script>document.location.href='main.php'</script>";
     
       mysql_query($insert_str);       
       }
-
-
-
-
    //  if( strstr($id,"undefined") == false &&  strstr($username,"undefined") == false &&  strstr($gender,"undefined") == false ) //使用strstr()函數，若有找到為true 
    //  {  
 
@@ -247,9 +169,7 @@
 	  
    //    mysql_query($insert_str);
 	  
-	  // } 
-	  
-	  
+	  // } 	  
    ?>
 	
 
