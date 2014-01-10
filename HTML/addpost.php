@@ -9,12 +9,14 @@ $st=$_POST["in_st"];
 $ft=$_POST["in_ft"];
 $des=$_POST["in_des"];
 
+
  $id = $_COOKIE["my_facebook_id"];
  $name = $_COOKIE["my_username"];
+ $pic = $_COOKIE["my_picture_url"];
 
 /* 將欄位資料資入資料庫 */
-$sql="INSERT post(name,id,topic,location,reward,description,starttime,deadline)
-      Values('$name','$id','$topic','$location','$reward','$des','$st','$ft')";
+$sql="INSERT post(name,id,topic,location,reward,description,starttime,deadline,pic)
+      Values('$name','$id','$topic','$location','$reward','$des','$st','$ft','$pic')";
 mysql_query($sql);
 
 echo "<script>document.location.href='main.php'</script>";

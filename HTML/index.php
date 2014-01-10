@@ -29,7 +29,7 @@
         <h1>長腿叔叔 Run for you</h1>
         <p class="lead">一個跑腿的故事</p>
         <div id="my-login-control" class="well">
-            <button id="my-login-button" class="btn btn-primary">Login with Facebook</button>
+            <button id="my-login-button" class="btn btn-primary"  >Login with Facebook</button>
         </div>
       </div>
 
@@ -108,7 +108,7 @@
                    document.cookie= "my_location=" + my_location;
                    document.cookie= "my_gender=" + my_gender;
                    
-                   
+                   window.location.reload();
 
                });
   
@@ -157,7 +157,7 @@
        
       echo "<script>document.location.href='main.php'</script>";
     
-      mysql_query($insert_str);       
+      mysql_query($insert_str);
       }
    //  if( strstr($id,"undefined") == false &&  strstr($username,"undefined") == false &&  strstr($gender,"undefined") == false ) //使用strstr()函數，若有找到為true 
    //  {  
