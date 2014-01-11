@@ -20,8 +20,6 @@
     <script src="./modal.js"></script>  
 
     <script>
-
-
        window.fbAsyncInit = function() {
            // init the FB JS SDK
            FB.init({
@@ -35,7 +33,6 @@
            window.fbLoaded();
        };
 
-
        // Load the SDK asynchronously
        (function(d, s, id){
            var js, fjs = d.getElementsByTagName(s)[0];
@@ -48,10 +45,10 @@
        }(document, 'script', 'facebook-jssdk'));
 
 
-    function setserbytime(userkeytime){
+       function setserbytime(userkeytime){
         document.cookie= "cuk=" + userkeytime;
         window.location.reload();
-    }
+      }
 
     </script>
 
@@ -94,7 +91,7 @@
                         {
 
                             method: 'feed',
-                            name: '我在長腿叔叔網站上PO了『'+jtopic+'』的臨時工作，趕快來幫幫我吧！',
+                            name: '我在長腿叔叔網站上找到『'+jtopic+'』的臨時工作，趕快來賺點外快吧！',
                             link: 'http://llurfy.fhero.net/',
                             picture: 'http://llurfy.fhero.net/a-2.png',
                             caption: '工作地點：'+jlocation+'回饋：'+jreward+'開始時間：'+jstart_time+'結束時間：'+jfinish_time,
@@ -181,7 +178,7 @@
 
                               <div class="col-lg-6">
                                 <h4><span class="label label-default">Finish Time</span></h4>
-                                <input input type="text" value="" placeholder="Please enter time" id="datetimepicker2" name="in_ft"><br>                        
+                                <input type="text" value="" placeholder="Please enter time" id="datetimepicker2" name="in_ft"><br>                        
                               </div>
                             </div><!--row-->
                             <br>
@@ -222,10 +219,9 @@
       </div>
     </div>
     
-  
-           <div class="container" style = " width: 65%">  
-            <div class="panel panel-info">                          
 
+           <div class="container" style = " width: 65%">                       
+            <div class="panel panel-info"> 
               <?php
 
                 $pic = $_COOKIE["my_picture_url"];
@@ -246,8 +242,8 @@
 
                         <div class='pull-right' style='WIDTH: 130px;'>
                           <br>
-                          <a href='myjob.php'><button type='button' class='btn btn-info btn-lg ' style='WIDTH: 130px;'>My Received</button></a><br><br>
-                          <a href='postedjob.php'><button type='button' class='btn btn-info btn-lg ' style='WIDTH: 130px;'>My Posted</button></a>
+                          <a href='main.php'><button type='button' class='btn btn-info btn-lg' style='WIDTH: 120px;'>Find job</button></a><br><br>
+                          <a href='postedjob.php'><button type='button' class='btn btn-info btn-lg ' style='WIDTH: 120px;'>My Posted</button></a>
                         </div>
 
                         <div class='pull-right'  style='WIDTH: 10px;'>&nbsp;</div>
@@ -263,9 +259,12 @@
 
               ";
               ?>
-                  <div class="panel-body">
-                     <div class="input-group">                   
-                          <h2>工作列表</h2>
+
+
+            
+              <div class="panel-body">
+                      <div class="input-group">                   
+                          <h2>我接受的工作</h2>
                           <div class="input-group-btn" >
                             <input type="button"  class="btn btn-default " data-toggle="dropdown" id="serchid" value="依新增時間搜尋▼"/>
                               <ul class="dropdown-menu" role="menu">
@@ -274,56 +273,59 @@
                                 <li><a href="#" onclick = setserbytime(3);>一個月內</a></li>
                                 <li><a href="#" onclick = setserbytime(0);>不限時間</a></li>
                               </ul>
-                                <button class="btn-info btn-lg" data-toggle="modal" data-target="#myModalA" style="WIDTH: 180px">Post Job</button><br>
                               </div>
                       </div>
                   
                   <?php              
-
                       mysql_connect("mysql.fhero.net","u662537759_db1","llurfy7890");
                       mysql_select_db("u662537759_db1");
+
+                      $id = $_COOKIE["my_facebook_id"];
                       
                       $count = 0;
 
-                      $currentlocation =  $_COOKIE["my_location"];
-                      // $notime = '*';
-                      // $pic = ""
-
-                        //echo "<script>window.location.reload();</script>";
-                        if($_COOKIE["cuk"] == 0) //不限時間
+                      
+                      if($_COOKIE["cuk"] == 0) //不限時間
                         {
-                            $sql="select * from post order by postid desc";  //±qguestbookÅª¨ú¸ê®Æ¨Ã¨ÌnoÄæ¦ì°µ»¼´î±Æ§Ç
+                            $sql="select * from job WHERE receiveid= '$id' order by jobid desc";  //±qguestbookÅª¨ú¸ê®Æ¨Ã¨ÌnoÄæ¦ì°µ»¼´î±Æ§Ç
                             echo "<script>document.getElementById('serchid').value = '不限時間▼'</script>";
                         }
                         else if($_COOKIE["cuk"] == 1) //日
                         {
-                            $sql="select * from post WHERE TO_DAYS(NOW()) - TO_DAYS(posttime) <= 1 order by postid desc";  //±qguestbookÅª¨ú¸ê®Æ¨Ã¨ÌnoÄæ¦ì°µ»¼´î±Æ§Ç
+                            $sql="select * from job WHERE receiveid= '$id' and TO_DAYS(NOW()) - TO_DAYS(posttime) <= 1 order by jobid desc";  //±qguestbookÅª¨ú¸ê®Æ¨Ã¨ÌnoÄæ¦ì°µ»¼´î±Æ§Ç
                             echo "<script>document.getElementById('serchid').value = '本日▼'</script>";
                         }
                         else if($_COOKIE["cuk"] == 2) //一星期
                         {
-                            $sql="select * from post WHERE TO_DAYS(NOW()) - TO_DAYS(posttime) <= 7 order by postid desc";  //±qguestbookÅª¨ú¸ê®Æ¨Ã¨ÌnoÄæ¦ì°µ»¼´î±Æ§Ç
+                            $sql="select * from job WHERE receiveid= '$id' and TO_DAYS(NOW()) - TO_DAYS(posttime) <= 7 order by jobid desc";  //±qguestbookÅª¨ú¸ê®Æ¨Ã¨ÌnoÄæ¦ì°µ»¼´î±Æ§Ç
                             echo "<script>document.getElementById('serchid').value = '一星期內▼'</script>";
                         }
                         else if($_COOKIE["cuk"] == 3) //一個月
                         {
-                            $sql="select * from post WHERE TO_DAYS(NOW()) - TO_DAYS(posttime) <= 30 order by postid desc";  //±qguestbookÅª¨ú¸ê®Æ¨Ã¨ÌnoÄæ¦ì°µ»¼´î±Æ§Ç
+                            $sql="select * from job WHERE receiveid= '$id' and TO_DAYS(NOW()) - TO_DAYS(posttime) <= 30 order by jobid desc";  //±qguestbookÅª¨ú¸ê®Æ¨Ã¨ÌnoÄæ¦ì°µ»¼´î±Æ§Ç
                             echo "<script>document.getElementById('serchid').value = '一個月內▼'</script>";
                         }
 
-                          $result=mysql_query($sql);
+                      $result=mysql_query($sql);
 
-                          while (list($postid,$name,$fb_id,$topic,$location,$reward,$des,$post_time,$start_time,$finish_time,$pic)
+                      while (list($jobid,$postername,$posterid,$topic,$location,$reward,$des,$post_time,$start_time,$finish_time,$receiveid,$receivename,$ref,$pic,$ok)
                         =mysql_fetch_row($result))
                       {                      
-                        $currentpostid =  $_COOKIE[$postid];
+                        // var_dump($jobid);var_dump($postername);var_dump($posterid);
+                        // var_dump($topic);var_dump($location);var_dump($reward);
+                        // var_dump($des);var_dump($post_time);var_dump($start_time);                
+                        // var_dump($finish_time);var_dump($receiveid);var_dump($ref);var_dump($pic);
+                        // var_dump($ok);
 
                         echo  "
-                            <div  class='col-12 col-sm-12 col-lg-12' >
-                               <hr size='10px;'> 
+                            <div  class='col-12 col-sm-12 col-lg-12 ";
+                            if($ok == 1){echo "well well-sm' style='background-color: #fcf8e3; border-color: #faebcc; '";}
+                            else{echo ">";}
+
+                            echo "<hr size='10px;'> 
                               <div class='media'>
                                   <a class='pull-left' href='#''>
-                                    <img class='media-object' src='".$pic; echo"' alt='75*75' style='width: 75px; height: 75px;' class='img-thumbnail'>
+                                    <img class='media-object' src='".$pic; echo"' alt='75*75' style='height: 75px;' class='img-thumbnail'>
                                   </a>
                                   <div class='media-body'>
                                         <div class='pull-right'>
@@ -331,7 +333,7 @@
                                           <button class='btn-info btn-lg' data-toggle='modal' data-target='#myModalB".$count; echo"'>Details....</button>
                                         </div>
                                         <font color='#31708f'><h4 class='media-heading'>".$topic; echo"</h4></font>
-                                        <h5>委託人:".$name;  echo"</h5><p>工作地點: ".$location; echo"</p><p>張貼時間: ". $post_time; echo "</p>
+                                        <h5>委託人:".$postername;  echo"</h5><p>工作地點: ".$location; echo"</p><p>張貼時間: ". $post_time; echo "</p>
                                   </div>
                                   <br>
                               </div>
@@ -341,7 +343,7 @@
                         <div class='modal fade' id='myModalB".$count; echo"' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true'>
                           <div class='modal-dialog'>
                             <div class='modal-content'> 
-                              <form name='bgbh".$count; echo"' method='post' action='addjob.php'>                                                      
+                              <form name='bgbh".$count; echo"' method='post' action='ok.php'>                                                      
                                       <div class='modal-header' style='background:#C7EFA1'>
                                         <button type='button' class='close' data-dismiss='modal' aria-hidden='true'>&times;</button>
                                         <h4 class='modal-title' id='myModalLabel'>Post job!!!</h4>
@@ -359,7 +361,7 @@
                                                   <div class='col-6'  style='WIDTH: 350px;'>
                                                     <div class='input-group  '>
                                                         <span class='input-group-addon'>Poster</span>              
-                                                        <input type='text' class='form-control col-6' value='".$name; echo"' name='postname' readOnly> 
+                                                        <input type='text' class='form-control col-6' value='".$postername; echo"' name='postname' readOnly> 
                                                     </div>
                                                   </div>                                    
                                                   <br>
@@ -410,12 +412,21 @@
                                             </div>
                                             <br>
                        
-                                            <textarea class='form-control text' rows='15' style='resize: none;' placeholder='".$des; echo"' name='in_des' ></textarea>                                
+                                            <textarea class='form-control text' rows='15' style='resize: none;' placeholder='".$des; echo"' name='in_des' readOnly></textarea>                                
                                       </div><!--modal body-->
                                       
                                       <div class='modal-footer'>
                                         <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
-                                        <button type='submit' class='btn btn-primary' value='I want it !!'>I want it !!</button>                                      
+                                        "; 
+
+                                        if($ok == 1){
+                                          echo "<button class='btn btn-primary' value='Finished' disabled>Finished</button>";
+                                        } 
+                                        else{
+                                          echo "<button type='submit' class='btn btn-primary' value='I done it !!'>I done it !!</button>";
+                                        }
+
+                                        echo"
                                       </div>                                    
                               </form>
                             </div><!-- /.modal-content -->                  
@@ -423,26 +434,11 @@
                         </div><!-- /.modal --> ";       
                         $count = $count + 1 ;        
                     }
-                    
+
                   ?>
                 </div>
               </div>
-              </div>
-
-              <!--<div class="col-xs-6 col-sm-4 sidebar-offcanvas" id="sidebar" role="navigation" style="background:yellow; float: right; width:35%;">
-                      <div class="list-group">
-                        <a href="#" class="list-group-item btn " data-toggle="modal" data-target="#myModalB">Link</a>
-                        <a href="#" class="list-group-item">Link</a>
-                        <a href="#" class="list-group-item">Link</a>
-                        <a href="#" class="list-group-item">Link</a>
-                        <a href="#" class="list-group-item">Link</a>
-                        <a href="#" class="list-group-item">Link</a>
-                        <a href="#" class="list-group-item">Link</a>
-                        <a href="#" class="list-group-item">Link</a>
-                        <a href="#" class="list-group-item">Link</a>
-                        <a href="#" class="list-group-item">Link</a>
-                      </div>
-              </div>-->
+            </div>
             
 
 
@@ -454,7 +450,6 @@
     <?php
       $id = $_COOKIE["my_facebook_id"];
       //var_dump($id);
-     // var_dump($_COOKIE["cuk"]);
       if ($id == NULL) {            
       echo "<script>document.location.href='index.php'</script>";      
       }
