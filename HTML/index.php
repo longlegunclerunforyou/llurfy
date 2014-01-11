@@ -103,7 +103,7 @@
                    // <%session("my_gender")=my_gender>;
                
                    document.cookie= "my_facebook_id=" + my_facebook_id;
-                   document.cookie= "my_username=" + my_username;
+                   document.cookie= "my_username=" + my_name;
                    document.cookie= "my_email=" + my_email;
                    document.cookie= "my_location=" + my_location;
                    document.cookie= "my_gender=" + my_gender;

@@ -11,7 +11,7 @@ $reward=$_POST["in_reward"];
 $st=$_POST["in_st"];
 $ft=$_POST["in_ft"];
 $des=$_POST["in_des"];
-$posttime=$_POST["posttime"];
+
 
  $id = $_COOKIE["my_facebook_id"];
  $name = $_COOKIE["my_username"];
@@ -24,7 +24,7 @@ $sql="INSERT job(postername,posterid,topic,location,reward,description,starttime
       Values('$postname','$fb_id','$topic','$location','$reward','$des','$st','$ft','$id')";
 mysql_query($sql);
 
-$sql2=" DELETE FROM `post` WHERE posttime = '$posttime' AND `name` = '$postname'" ;
+$sql2=" DELETE FROM `post` WHERE starttime = '$st' AND `name` = '$postname'" ;
 mysql_query($sql2);
 
 echo "<script>document.location.href='main.php'</script>";
