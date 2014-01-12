@@ -16,12 +16,12 @@ $posttime=$_POST["posttime"];
  $id = $_COOKIE["my_facebook_id"];
  $name = $_COOKIE["my_username"];
  //$pic = $_COOKIE["my_picture_url"];
-
+//var_dump($name);
 
 /* ±NÄæ¦ì¸ê®Æ¸ê¤J¸ê®Æ®w */
 
 
-$sql2=" DELETE FROM `job` WHERE posttime = '$posttime' AND `postername` = '$postname'" ;
+$sql2=" DELETE FROM `job` WHERE posttime = '$posttime' AND posterid = '$id'" ;
 mysql_query($sql2);
 
  echo "<script>document.location.href='postedjob.php'</script>";
