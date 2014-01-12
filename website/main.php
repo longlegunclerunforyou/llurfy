@@ -240,13 +240,14 @@
                       </a>
                       <div class='media-body'>
                         <div class='pull-left'>
-                          <h3>".$name; echo "</h3><br><br><br>
-                          <button type='button' class='btn btn-info btn-xs'>Profile Edit</button>
+                          <h3>".$name; echo "</h3>
+                          <div class='fb-like' data-href='http://llurfy.fhero.net' data-layout='standard' data-action='like' data-show-faces='true' data-share='true'></div><br>
+                          <a href='http://www.facebook.com/llurfy' target='_blank' class='btn btn-info'>FB offical website</a>
                         </div> 
 
                         <div class='pull-right' style='WIDTH: 130px;'>
                           <br>
-                          <a href='myjob.php'><button type='button' class='btn btn-info btn-lg ' style='WIDTH: 130px;'>My Received</button></a><br><br>
+                          <a href='myjob.php'><button type='button' class='btn btn-info btn-lg' style='WIDTH: 130px;'>My Received</button></a><br><br>
                           <a href='postedjob.php'><button type='button' class='btn btn-info btn-lg ' style='WIDTH: 130px;'>My Posted</button></a>
                         </div>
 
@@ -282,36 +283,73 @@
 
                       mysql_connect("mysql.fhero.net","u662537759_db1","llurfy7890");
                       mysql_select_db("u662537759_db1");
+
+                      $id = $_COOKIE["my_facebook_id"];
                       
                       $count = 0;
 
-                      $currentlocation =  $_COOKIE["my_location"];
-                      // $notime = '*';
-                      // $pic = ""
+                      $rows=mysql_query("select * from post ");
+                      $total=mysql_num_rows($rows);
+                      $show=ceil($total/5); 
+                      echo "<ul class='pagination' style='float:left;'>";
 
-                        //echo "<script>window.location.reload();</script>";
-                        if($_COOKIE["cuk"] == 0) //不限時間
+                      /* 查詢欄位資料 */
+                      $page=$_GET["page"];                        //以$_GET變數取得頁數
+                      if(empty($page))$page=1;                    //如果$page為空則設定為1
+
+
+                      if($page>1)                                     //目前頁數大於1顯示上一頁
+                      {
+                      $pre=$page-1;                                  //上一頁公式
+                      echo "<li><a href='main.php?page=$pre'>&laquo;</a></li>";
+                      }else{echo "<li class='disabled'><a href=''>&laquo;</a></li>";}
+
+                      for ($i=1;$i<=$show;$i++)
+                      {
+                        if($i == $page)
                         {
-                            $sql="select * from post order by postid desc";  //±qguestbookÅª¨ú¸ê®Æ¨Ã¨ÌnoÄæ¦ì°µ»¼´î±Æ§Ç
+                          echo "<li class='active'><span>$i<span class='sr-only'>(current)</span></span></li>";
+                        }
+                        else
+                        {
+                          echo "<li><a href=main.php?page=$i>$i</a></li>";
+                        }
+                      }
+
+                      if($page<$show)                                  //總頁數小於目前頁數則
+                      {
+                       $next=$page+1;                                      //下一頁公式
+                       echo "<li><a href='main.php?page=$next'>&raquo;</a></li>";
+                      }else{echo "<li class='disabled'><a href=''>&raquo;</a></li>";}
+                      echo "</ul>";
+                      echo "<div style='float:right; '><h4>共".$total."筆委託中的工作</h4></div>";
+                      
+
+                      $start=5*($page-1);                         //計算讀取的起點
+
+                      
+                      if($_COOKIE["cuk"] == 0) //不限時間
+                        {
+                            $sql="select * from post  order by postid desc limit $start,5";  //±qguestbookÅª¨ú¸ê®Æ¨Ã¨ÌnoÄæ¦ì°µ»¼´î±Æ§Ç
                             echo "<script>document.getElementById('serchid').value = '不限時間▼'</script>";
                         }
                         else if($_COOKIE["cuk"] == 1) //日
                         {
-                            $sql="select * from post WHERE TO_DAYS(NOW()) - TO_DAYS(posttime) <= 1 order by postid desc";  //±qguestbookÅª¨ú¸ê®Æ¨Ã¨ÌnoÄæ¦ì°µ»¼´î±Æ§Ç
+                            $sql="select * from post WHERE  TO_DAYS(NOW()) - TO_DAYS(posttime) <= 1 order by postid desc limit $start,5";  //±qguestbookÅª¨ú¸ê®Æ¨Ã¨ÌnoÄæ¦ì°µ»¼´î±Æ§Ç
                             echo "<script>document.getElementById('serchid').value = '本日▼'</script>";
                         }
                         else if($_COOKIE["cuk"] == 2) //一星期
                         {
-                            $sql="select * from post WHERE TO_DAYS(NOW()) - TO_DAYS(posttime) <= 7 order by postid desc";  //±qguestbookÅª¨ú¸ê®Æ¨Ã¨ÌnoÄæ¦ì°µ»¼´î±Æ§Ç
+                            $sql="select * from post WHERE  TO_DAYS(NOW()) - TO_DAYS(posttime) <= 7 order by postid desc limit $start,5";  //±qguestbookÅª¨ú¸ê®Æ¨Ã¨ÌnoÄæ¦ì°µ»¼´î±Æ§Ç
                             echo "<script>document.getElementById('serchid').value = '一星期內▼'</script>";
                         }
                         else if($_COOKIE["cuk"] == 3) //一個月
                         {
-                            $sql="select * from post WHERE TO_DAYS(NOW()) - TO_DAYS(posttime) <= 30 order by postid desc";  //±qguestbookÅª¨ú¸ê®Æ¨Ã¨ÌnoÄæ¦ì°µ»¼´î±Æ§Ç
+                            $sql="select * from post WHERE  TO_DAYS(NOW()) - TO_DAYS(posttime) <= 30 order by postid desc limit $start,5";  //±qguestbookÅª¨ú¸ê®Æ¨Ã¨ÌnoÄæ¦ì°µ»¼´î±Æ§Ç
                             echo "<script>document.getElementById('serchid').value = '一個月內▼'</script>";
                         }
 
-                          $result=mysql_query($sql);
+                      $result=mysql_query($sql);
 
                           while (list($postid,$name,$fb_id,$topic,$location,$reward,$des,$post_time,$start_time,$finish_time,$pic)
                         =mysql_fetch_row($result))

@@ -236,14 +236,15 @@
                       </a>
                       <div class='media-body'>
                         <div class='pull-left'>
-                          <h3>".$name; echo "</h3><br><br><br>
-                          <button type='button' class='btn btn-info btn-xs'>Profile Edit</button>
+                          <h3>".$name; echo "</h3>
+                          <div class='fb-like' data-href='http://llurfy.fhero.net' data-layout='standard' data-action='like' data-show-faces='true' data-share='true'></div><br>
+                          <a href='http://www.facebook.com/llurfy' target='_blank' class='btn btn-info'>FB offical website</a>
                         </div> 
 
                         <div class='pull-right' style='WIDTH: 130px;'>
                           <br>
-                          <a href='main.php'><button type='button' class='btn btn-info btn-lg' style='WIDTH: 120px;'>Find job</button></a><br><br>
-                          <a href='postedjob.php'><button type='button' class='btn btn-info btn-lg ' style='WIDTH: 120px;'>My Posted</button></a>
+                          <a href='main.php'><button type='button' class='btn btn-info btn-lg' style='WIDTH: 130px;'>Find job</button></a><br><br>
+                          <a href='postedjob.php'><button type='button' class='btn btn-info btn-lg ' style='WIDTH: 130px;'>My Posted</button></a>
                         </div>
 
                         <div class='pull-right'  style='WIDTH: 10px;'>&nbsp;</div>
@@ -284,31 +285,70 @@
                       
                       $count = 0;
 
+                      $rows=mysql_query("select * from job WHERE receiveid= '$id'");
+                      $total=mysql_num_rows($rows);
+                      $show=ceil($total/5); 
+                      echo "<ul class='pagination' style='float:left;'>";
+
+                      /* 查詢欄位資料 */
+                      $page=$_GET["page"];                        //以$_GET變數取得頁數
+                      if(empty($page))$page=1;                    //如果$page為空則設定為1
+
+
+                      if($page>1)                                     //目前頁數大於1顯示上一頁
+                      {
+                      $pre=$page-1;                                  //上一頁公式
+                      echo "<li><a href='myjob.php?page=$pre'>&laquo;</a></li>";
+                      }else{echo "<li class='disabled'><a href=''>&laquo;</a></li>";}
+
+                      for ($i=1;$i<=$show;$i++)
+                      {
+                        if($i == $page)
+                        {
+                          echo "<li class='active'><span>$i<span class='sr-only'>(current)</span></span></li>";
+                        }
+                        else
+                        {
+                          echo "<li><a href=myjob.php?page=$i>$i</a></li>";
+                        }
+                      }
+
+                      if($page<$show)                                  //總頁數小於目前頁數則
+                      {
+                       $next=$page+1;                                      //下一頁公式
+                       echo "<li><a href='myjob.php?page=$next'>&raquo;</a></li>";
+                      }else{echo "<li class='disabled'><a href=''>&raquo;</a></li>";}
+                      echo "</ul>";
+                      echo "<div style='float:right; '><h4>共".$total."筆委託中的工作</h4></div>";
+                      
+
+                      $start=5*($page-1);                         //計算讀取的起點
+
                       
                       if($_COOKIE["cuk"] == 0) //不限時間
                         {
-                            $sql="select * from job WHERE receiveid= '$id' order by jobid desc";  //±qguestbookÅª¨ú¸ê®Æ¨Ã¨ÌnoÄæ¦ì°µ»¼´î±Æ§Ç
+                            $sql="select * from job WHERE receiveid= '$id' order by jobid desc limit $start,5";  //±qguestbookÅª¨ú¸ê®Æ¨Ã¨ÌnoÄæ¦ì°µ»¼´î±Æ§Ç
                             echo "<script>document.getElementById('serchid').value = '不限時間▼'</script>";
                         }
                         else if($_COOKIE["cuk"] == 1) //日
                         {
-                            $sql="select * from job WHERE receiveid= '$id' and TO_DAYS(NOW()) - TO_DAYS(posttime) <= 1 order by jobid desc";  //±qguestbookÅª¨ú¸ê®Æ¨Ã¨ÌnoÄæ¦ì°µ»¼´î±Æ§Ç
+                            $sql="select * from job WHERE receiveid= '$id' and TO_DAYS(NOW()) - TO_DAYS(posttime) <= 1 order by jobid desc limit $start,5";  //±qguestbookÅª¨ú¸ê®Æ¨Ã¨ÌnoÄæ¦ì°µ»¼´î±Æ§Ç
                             echo "<script>document.getElementById('serchid').value = '本日▼'</script>";
                         }
                         else if($_COOKIE["cuk"] == 2) //一星期
                         {
-                            $sql="select * from job WHERE receiveid= '$id' and TO_DAYS(NOW()) - TO_DAYS(posttime) <= 7 order by jobid desc";  //±qguestbookÅª¨ú¸ê®Æ¨Ã¨ÌnoÄæ¦ì°µ»¼´î±Æ§Ç
+                            $sql="select * from job WHERE receiveid= '$id' and TO_DAYS(NOW()) - TO_DAYS(posttime) <= 7 order by jobid desc limit $start,5";  //±qguestbookÅª¨ú¸ê®Æ¨Ã¨ÌnoÄæ¦ì°µ»¼´î±Æ§Ç
                             echo "<script>document.getElementById('serchid').value = '一星期內▼'</script>";
                         }
                         else if($_COOKIE["cuk"] == 3) //一個月
                         {
-                            $sql="select * from job WHERE receiveid= '$id' and TO_DAYS(NOW()) - TO_DAYS(posttime) <= 30 order by jobid desc";  //±qguestbookÅª¨ú¸ê®Æ¨Ã¨ÌnoÄæ¦ì°µ»¼´î±Æ§Ç
+                            $sql="select * from job WHERE receiveid= '$id' and TO_DAYS(NOW()) - TO_DAYS(posttime) <= 30 order by jobid desc limit $start,5";  //±qguestbookÅª¨ú¸ê®Æ¨Ã¨ÌnoÄæ¦ì°µ»¼´î±Æ§Ç
                             echo "<script>document.getElementById('serchid').value = '一個月內▼'</script>";
                         }
 
                       $result=mysql_query($sql);
 
-                      while (list($jobid,$postername,$posterid,$topic,$location,$reward,$des,$post_time,$start_time,$finish_time,$receiveid,$receivename,$ref,$pic,$ok)
+                      while (list($jobid,$postername,$posterid,$topic,$location,$reward,$des,$post_time,$start_time,$finish_time,$receiveid,$receivename,$ref,$pic,$receivepic,$ok)
                         =mysql_fetch_row($result))
                       {                      
                         // var_dump($jobid);var_dump($postername);var_dump($posterid);
@@ -360,7 +400,7 @@
                                                <div class='pull-right'>
                                                   <div class='col-6'  style='WIDTH: 350px;'>
                                                     <div class='input-group  '>
-                                                        <span class='input-group-addon'>Poster</span>              
+                                                        <span class='input-group-addon'>Receiver</span>              
                                                         <input type='text' class='form-control col-6' value='".$postername; echo"' name='postname' readOnly> 
                                                     </div>
                                                   </div>                                    

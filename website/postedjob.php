@@ -349,7 +349,7 @@
 
                       $result=mysql_query($sql);
 
-                      while (list($jobid,$postername,$posterid,$topic,$location,$reward,$des,$post_time,$start_time,$finish_time,$receiveid,$receivename,$ref,$pic,$ok)
+                      while (list($jobid,$postername,$posterid,$topic,$location,$reward,$des,$post_time,$start_time,$finish_time,$receiveid,$receivename,$ref,$pic,$receivepic,$ok)
                         =mysql_fetch_row($result))
                       {                      
                         // var_dump($jobid);var_dump($postername);var_dump($posterid);
@@ -366,7 +366,7 @@
                             echo "<hr size='10px;'> 
                               <div class='media'>
                                   <a class='pull-left' href='#''>
-                                    <img class='media-object' src='".$pic; echo"' alt='75*75' style='height: 75px;' class='img-thumbnail'>
+                                    <img class='media-object' src='".$receivepic; echo"' alt='75*75' style='height: 75px;' class='img-thumbnail'>
                                   </a>
                                   <div class='media-body'>
                                         <div class='pull-right'>
@@ -397,8 +397,8 @@
                                                <div class='pull-right'>
                                                   <div class='col-6'  style='WIDTH: 350px;'>
                                                     <div class='input-group  '>
-                                                        <span class='input-group-addon'>Poster</span>              
-                                                        <input type='text' class='form-control col-6' value='".$name; echo"' name='postname' readOnly> 
+                                                        <span class='input-group-addon'>Receiverer</span>              
+                                                        <input type='text' class='form-control col-6' value='".$receivename; echo"' name='postname' readOnly> 
                                                     </div>
                                                   </div>                                    
                                                   <br>
@@ -432,7 +432,7 @@
                                               </div>  
 
                                               <div class='pull-right'>
-                                                  <img class='media-object' src='".$pic; echo"' alt='' style=' width:200px;'' class='img-thumbnail' id='my-profile-picture' name='pic'>  
+                                                  <img class='media-object' src='".$receivepic; echo"' alt='' style=' width:200px;'' class='img-thumbnail' id='my-profile-picture' name='pic'>  
                                               </div>
 
                                           </div>

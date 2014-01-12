@@ -15,6 +15,7 @@ $posttime=$_POST["posttime"];
 
  $id = $_COOKIE["my_facebook_id"];
  $name = $_COOKIE["my_username"];
+ $receivepic = $_COOKIE["my_picture_url"];
  // var_dump($name);
  //$pic = $_COOKIE["my_picture_url"];
 
@@ -25,8 +26,8 @@ $sql0=" select  * FROM `post` WHERE posttime = '$posttime' AND `name` = '$postna
 $result = mysql_query($sql0);
 list($postid,$postername,$fb_id,$topic,$location,$reward,$des,$post_time,$start_time,$finish_time,$pic) = mysql_fetch_row($result);
 
-$sql="INSERT job(postername,posterid,topic,location,reward,description,posttime,starttime,deadline,receiveid,receivename,pic)
-      Values('$postname','$fb_id','$topic','$location','$reward','$des','$post_time','$st','$ft','$id','$name','$pic')";
+$sql="INSERT job(postername,posterid,topic,location,reward,description,posttime,starttime,deadline,receiveid,receivename,pic,receivepic)
+      Values('$postname','$fb_id','$topic','$location','$reward','$des','$post_time','$st','$ft','$id','$name','$pic','$receivepic')";
 mysql_query($sql);
 
 
