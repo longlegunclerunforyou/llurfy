@@ -400,7 +400,7 @@
                                                <div class='pull-right'>
                                                   <div class='col-6'  style='WIDTH: 350px;'>
                                                     <div class='input-group  '>
-                                                        <span class='input-group-addon'>Receiver</span>              
+                                                        <span class='input-group-addon'>Poster</span>              
                                                         <input type='text' class='form-control col-6' value='".$postername; echo"' name='postname' readOnly> 
                                                     </div>
                                                   </div>                                    

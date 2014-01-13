@@ -448,7 +448,7 @@
                                             </div>
                                             <br>
                        
-                                            <textarea class='form-control text' rows='15' style='resize: none;' placeholder='".$des; echo"' name='in_des' ></textarea>                                
+                                            <textarea class='form-control text' rows='15' style='resize: none;' placeholder='".$des; echo"' name='in_des' readOnly></textarea>                                
                                       </div><!--modal body-->
                                       
                                       <div class='modal-footer'>
