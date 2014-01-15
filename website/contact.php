@@ -436,7 +436,7 @@
                                             </div>
                                             <br>
                        
-                                            <textarea class="form-control text" rows="15" style="resize: none;" placeholder="" name="in_des" readOnly></textarea>                                
+                                                                           
                                       </div><!--modal body-->
                     <div class="modal-footer">
                       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -507,12 +507,12 @@
                                             <div class = "row">
                                               <div class="col-lg-4">
                                                 <h4><span class="label label-default">出身年月日</span></h4>
-                                                <input type="text" value="1992/10/20" id="datetimepicker" name="in_st" readOnly><br>
+                                                <input type="text" value="1992/10/20"  name="in_st" readOnly><br>
                                               </div>
 
                                               <div class="col-lg-4">
                                                 <h4><span class="label label-default">興趣</span></h4>
-                                                <input type="text" value="彈吉他、董小姐" id="datetimepicker2" name="in_ft" readOnly><br>                        
+                                                <input type="text" value="彈吉他、董小姐"  name="in_ft" readOnly><br>                        
                                               </div>
 
                                               <div class="col-lg-4">
@@ -523,7 +523,7 @@
                                             </div>
                                             <br>
                        
-                                            <textarea class="form-control text" rows="15" style="resize: none;" placeholder="" name="in_des" readOnly></textarea>                                
+                                            
                                       </div><!--modal body-->
                     <div class="modal-footer">
                       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -594,12 +594,12 @@
                             <div class = "row">
                                               <div class="col-lg-4">
                                                 <h4><span class="label label-default">出身年月日</span></h4>
-                                                <input type="text" value="1991/11/20" id="datetimepicker" name="in_st" readOnly><br>
+                                                <input type="text" value="1991/11/20" name="in_st" readOnly><br>
                                               </div>
 
                                               <div class="col-lg-4">
                                                 <h4><span class="label label-default">興趣</span></h4>
-                                                <input type="text" value="散步" id="datetimepicker2" name="in_ft" readOnly><br>                        
+                                                <input type="text" value="散步"  name="in_ft" readOnly><br>                        
                                               </div>
 
                                               <div class="col-lg-4">
@@ -610,7 +610,7 @@
                                             </div>
                                             <br>
        
-                            <textarea class="form-control text" rows="15" style="resize: none;" placeholder="give some more details about your job ...." name="in_des"></textarea>                                
+                            
                       </div><!--modal body-->
                     <div class="modal-footer">
                       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

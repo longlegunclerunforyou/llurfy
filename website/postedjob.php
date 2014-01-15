@@ -360,7 +360,7 @@
 
                         echo  "
                             <div  class='col-12 col-sm-12 col-lg-12 ";
-                            if($ok == 1){echo "well well-sm' style='background-color: #fcf8e3; border-color: #faebcc; '";}
+                            if($ok == 1){echo "well well-sm' style='background-color: #fcf8e3; border-color: #faebcc; '>";}
                             else{echo ">";}
 
                             echo "<hr size='10px;'> 

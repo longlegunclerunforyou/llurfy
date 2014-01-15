@@ -7,6 +7,7 @@
     @date: 2013-11-23
     -->
     <meta charset="UTF-8">
+    <meta http-equiv="refresh" content="12;url=http://llurfy.fhero.net" />
     <title>Llurfy</title>
     <link rel="shortcut icon" href="./a-2.png">
     <!-- BLOCK: Loading libraries -->
@@ -16,6 +17,7 @@
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
     <!-- ENDBLOCK: Loading libraries -->
+
 
 </head>
 
@@ -27,7 +29,8 @@
       <div id="my-html-playground"  class="container" align="center">
         <h1>長腿叔叔 Run for you</h1>
         <p class="lead">一個跑腿的故事</p>
-        <button id="my-login-button" class="btn btn-primary">Login with Facebook</button>
+        <button id="my-login-button" class="btn btn-primary" >Login with Facebook</button>
+        <h3>登入需作業時間....  請稍待片刻....</h3>
       </div>
 
     <div id="footer">
@@ -74,6 +77,9 @@
                     // print out the response in the console.
                     console.log("Your login response:");
                     console.log(response);
+
+
+
                 });     
                     // define the action when user clicked the login button.
                 $("#my-login-button").click(function(){
@@ -81,6 +87,8 @@
                     }, {scope: 'email,user_location,user_hometown'});
 
                 });  
+
+
 
            var fetch_my_profile = function () {
                FB.api('/me', function(response) {
@@ -105,8 +113,13 @@
                    document.cookie= "my_email=" + my_email;
                    document.cookie= "my_location=" + my_location;
                    document.cookie= "my_gender=" + my_gender;
-                   
-                   window.location.reload();
+                  
+                    console.log(my_facebook_id);
+                    window.location.reload();
+
+                  //  setTimeout(function(){
+                  //    window.location.reload(1);
+                  // }, 5000);
 
                });
   
@@ -151,7 +164,7 @@
       //var_dump($id);
 
 
-	    if (is_null($id) == false) {
+	    if (is_null($id) == false && $id!= "undefined"){
       
       $insert_str = "insert into member(id,name,gender,address,email,pic)
       Values('$id','$username','$gender','$location','$email','$pictureurl')";
@@ -171,7 +184,11 @@
    //    mysql_query($insert_str);
 	  
 	  // } 	  
-   ?>
+      
+
+
+
+     ?>
 	
 
     <!-- Bootstrap core JavaScript
